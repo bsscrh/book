@@ -20,9 +20,26 @@
     
     <div class="login layui-anim layui-anim-up">
         <div class="message">后台管理登录</div>
+
+        @if (!empty($errors))
+            <div class="alert alert-danger">
+                <ul>
+                    @if(is_object($errors))
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    @else
+                        <li>{{ $errors }}</li>
+                    @endif
+                </ul>
+            </div>
+        @endif
+
         <div id="darkbannerwrap"></div>
         
-        <form method="post" class="layui-form" >
+        <form method="post" class="layui-form" action="{{ url('admin/dologin') }}">
+            {{ csrf_field() }}
+
             <input name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
             <hr class="hr15">
             <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
@@ -45,10 +62,7 @@
               //监听提交
               form.on('submit(login)', function(data){
                 // alert(888)
-                layer.msg(JSON.stringify(data.field),function(){
-                    location.href='index.html'
-                });
-                return false;
+
               });
             });
         })

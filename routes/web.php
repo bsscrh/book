@@ -16,4 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('admin/login','Admin\LoginController@login');
+Route::post('admin/dologin','Admin\LoginController@doLogin');
 Route::get('admin/code','Admin\LoginController@code');
