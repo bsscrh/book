@@ -93,7 +93,6 @@ class Code{
 
 	//返回验证码
 	public function get() {
-//		return $_SESSION['code'];
         return session('code');
 	}
 
