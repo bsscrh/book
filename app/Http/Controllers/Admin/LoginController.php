@@ -16,6 +16,27 @@ class LoginController extends Controller
         return view('admin.login');
     }
 
+    //后台首页
+    public function index()
+    {
+        return view('admin.index');
+    }
+
+    //后台欢迎页
+    public function welcome()
+    {
+        return view('admin.welcome');
+    }
+
+    //退出登录
+    public function logout()
+    {
+        // 清空session中的用户信息
+        session()->flush();
+        // 跳转到登录页面
+        return redirect('admin/login');
+    }
+
     public function code()
     {
         $code = new Code();
@@ -66,7 +87,7 @@ class LoginController extends Controller
 
 //        4. 保存用户信息到session中
 
-        session()->put('user',$user);
+        session()->put('user',$user->user_name);
 
 //        5. 跳转到后台首页
         return redirect('admin/index');

@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('admin/login','Admin\LoginController@login');
-Route::post('admin/dologin','Admin\LoginController@doLogin');
-Route::get('admin/code','Admin\LoginController@code');
+Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
+    Route::get('login','LoginController@login');
+    Route::post('dologin','LoginController@doLogin');
+    Route::get('code','LoginController@code');
+});
+
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['isLogin']],function() {
+    Route::get('index','LoginController@index');
+    Route::get('welcome','LoginController@welcome');
+    Route::get('logout','LoginController@logout');
+});
