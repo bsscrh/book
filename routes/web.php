@@ -25,4 +25,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['isLogin']],
     Route::get('index','LoginController@index');
     Route::get('welcome','LoginController@welcome');
     Route::get('logout','LoginController@logout');
+
+    Route::resource('user','UserController');
 });
