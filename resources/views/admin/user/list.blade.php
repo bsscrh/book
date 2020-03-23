@@ -95,6 +95,7 @@
         </tbody>
       </table>
       <div class="page">
+        {{-- 用 laravel 做分页的时候，发现 appends 可以保证 page 参数不丢失 --}}
        {!! $user->appends($request->all())->render() !!}
       </div>
 
