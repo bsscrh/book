@@ -25,6 +25,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['isLogin']],
     Route::get('index','LoginController@index');
     Route::get('welcome','LoginController@welcome');
     Route::get('logout','LoginController@logout');
-
+//    删除所有选中用户路由
+    Route::get('user/delAll','UserController@delAll');
     Route::resource('user','UserController');
 });

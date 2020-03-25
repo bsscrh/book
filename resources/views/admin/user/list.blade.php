@@ -150,7 +150,10 @@
                   // console.log(data);
                   if(data.status == 0){
                       $(obj).parents("tr").remove();
-                      layer.msg(data.message,{icon:6,time:1000});
+//                      layer.msg(data.message,{icon:6,time:1000});
+                      layer.alert(data.message,{icon:6},function(){
+                          location.reload(true);
+                      });
                   }else{
                       layer.msg(data.message,{icon:5,time:1000});
                   }
@@ -175,7 +178,7 @@
 
         layer.confirm('确认要删除吗？',function(index){
 
-            $.get('/admin/user/del',{'ids':ids},function(data){
+            $.get('/admin/user/delAll',{'ids':ids},function(data){
                 if(data.status == 0){
                     $(".layui-form-checked").not('.header').parents('tr').remove();
                     layer.msg(data.message,{icon:6,time:1000});

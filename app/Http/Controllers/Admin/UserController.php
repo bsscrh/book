@@ -156,6 +156,40 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $res = $user->delete();
+        if($res){
+            $data = [
+                'status'=>0,
+                'message'=>'修改成功'
+            ];
+        }else{
+            $data = [
+                'status'=>1,
+                'message'=>'修改失败'
+            ];
+        }
+        return $data;
+    }
+
+    //删除所有选中用户
+    public function delAll(Request $request)
+    {
+        $input = $request->input('ids');
+
+        $res = User::destroy($input);
+
+        if($res){
+            $data = [
+                'status'=>0,
+                'message'=>'删除成功'
+            ];
+        }else{
+            $data = [
+                'status'=>1,
+                'message'=>'删除失败'
+            ];
+        }
+        return $data;
     }
 }
