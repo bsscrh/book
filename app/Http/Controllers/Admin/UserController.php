@@ -112,7 +112,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.user.edit',compact('user'));
     }
 
     /**
@@ -124,7 +125,27 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //        1. 根据id获取要修改的记录
+        $user = User::find($id);
+//        2. 获取要修改成的用户名
+        $username = $request->input('user_name');
+
+        $user->user_name = $username;
+
+        $res = $user->save();
+
+        if($res){
+            $data = [
+                'status'=>0,
+                'message'=>'修改成功'
+            ];
+        }else{
+            $data = [
+                'status'=>1,
+                'message'=>'修改失败'
+            ];
+        }
+        return $data;
     }
 
     /**
