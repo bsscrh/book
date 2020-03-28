@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use DB;
 
-//php artisan make:controller Admin\User --resource 资源路由
+//php artisan make:controller Admin\UserController --resource 资源路由
 //php artisan route:list
 class UserController extends Controller
 {

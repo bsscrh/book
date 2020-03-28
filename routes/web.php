@@ -28,4 +28,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['isLogin']],
 //    删除所有选中用户路由
     Route::get('user/delAll','UserController@delAll');
     Route::resource('user','UserController');
+    Route::resource('role','RoleController');
+    Route::get('role/auth/{id}','RoleController@auth');
 });
+
