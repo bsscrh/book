@@ -30,5 +30,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['isLogin']],
     Route::resource('user','UserController');
     Route::resource('role','RoleController');
     Route::get('role/auth/{id}','RoleController@auth');
+    Route::post('role/doauth','RoleController@doAuth');
 });
 

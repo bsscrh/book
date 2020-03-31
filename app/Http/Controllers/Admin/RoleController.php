@@ -2,12 +2,54 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\Permission;
 use App\Model\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
+    //获取授权页面
+    public function auth($id)
+    {
+        //获取当前角色
+        $role = Role::find($id);
+        //获取所有的权限列表
+        $perms = Permission::get();
+
+        //获取当前角色拥有的权限
+        $own_perms = $role->permission;
+//        dd($own_perms);
+//        角色拥有的权限的id
+        $own_pers = [];
+        foreach ($own_perms as $v){
+            $own_pers[] = $v->id;
+        }
+
+        return view('admin.role.auth',compact('role','perms','own_pers'));
+    }
+
+    //处理授权
+    public function doAuth(Request $request)
+    {
+        $input = $request->except('_token');
+//        dd($input);
+
+        //删除当前角色已有的权限
+        \DB::table('role_permission')->where('role_id',$input['role_id'])->delete();
+
+        //添加新授予的权限
+        if(!empty($input['permission_id'])){
+            foreach ($input['permission_id'] as $v){
+                \DB::table('role_permission')->insert(['role_id'=>$input['role_id'],'permission_id'=>$v]);
+            }
+        }
+
+
+        return redirect('admin/role');
+
+    }
+
     /**
      * Display a listing of the resource.
      *
