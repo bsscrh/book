@@ -13,6 +13,62 @@ use DB;
 //php artisan route:list
 class UserController extends Controller
 {
+    //返回角色授权页面
+    public function auth($id)
+    {
+        //根据ID获取用户
+        $user = User::find($id);
+        //获取所有的角色
+        $roles = Role::get();
+
+        //获取当前用户已经被授予的角色
+        $own_roles = $user->role;
+//        dd($own_roles);
+
+        //当前用户拥有的角色的ID列表
+        $own_roleids = [];
+        foreach ($own_roles as $v){
+            $own_roleids[] = $v->id;
+        }
+
+
+        return view('admin.user.auth',compact('user','roles','own_roleids'));
+    }
+
+    //处理角色授权
+    public function doAuth(Request $request)
+    {
+        $input = $request->all();
+
+        DB::beginTransaction();
+
+        try{
+            //要执行的sql语句
+            //删除当前角色被赋予的所有权限
+            DB::table('user_role')->delete();
+
+            if(!empty($input['role_id'])){
+                //将提交的数据添加到 角色权限关联表
+                foreach ($input['role_id'] as $v){
+                    DB::table('user_role')->insert([
+                        'user_id'=>$input['user_id'],
+                        'role_id'=>$v
+                    ]);
+                }
+            }
+
+            DB::commit();
+
+            return redirect('admin/user');
+
+        }catch(Exception $e){
+            DB::rollBack();
+            return redirect()->back()
+                ->withErrors(['error' => $e->getMessage()]);
+        }
+
+    }
+
     /**
      * 获取用户列表
      *

@@ -29,7 +29,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['isLogin']],
     Route::get('user/delAll','UserController@delAll');
     Route::resource('user','UserController');
     Route::resource('role','RoleController');
+    Route::resource('permission','PermissionController');
     Route::get('role/auth/{id}','RoleController@auth');
+    Route::get('user/auth/{id}','UserController@auth');
     Route::post('role/doauth','RoleController@doAuth');
+    Route::post('user/doauth','UserController@doAuth');
 });
 
