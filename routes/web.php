@@ -20,8 +20,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::post('dologin','LoginController@doLogin');
     Route::get('code','LoginController@code');
 });
-
-Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['isLogin']],function() {
+Route::get('noaccess','Admin\LoginController@noaccess');
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['hasRole','isLogin']],function() {
     Route::get('index','LoginController@index');
     Route::get('welcome','LoginController@welcome');
     Route::get('logout','LoginController@logout');
