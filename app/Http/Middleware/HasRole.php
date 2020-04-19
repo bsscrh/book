@@ -21,13 +21,13 @@ class HasRole
 //        1. 获取当前请求的路由 对应的控制器方法名
 //        "App\Http\Controllers\Admin\LoginController@index"
         $route = \Route::current()->getActionName();
-//        dd($route);
+
 
 //        2. 获取当前用户的权限组
         $user = User::find(session()->get('user')->user_id);
+
 //        2.1 获取当前用户的角色
         $roles = $user->role;
-//        dd($roles);
 //        根据用户拥有的角色，找对应的权限
 
 //        存放权限对应的per_url字段值 也就是权限列表
@@ -39,7 +39,6 @@ class HasRole
             }
         }
 
-//        dd($arr);
 //        去掉重复的权限
         $arr = array_unique($arr);
 

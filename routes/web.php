@@ -21,7 +21,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('code','LoginController@code');
 });
 Route::get('noaccess','Admin\LoginController@noaccess');
-Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['hasRole','isLogin']],function() {
+//Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['hasRole','isLogin']],function() {
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['isLogin']],function() {
     Route::get('index','LoginController@index');
     Route::get('welcome','LoginController@welcome');
     Route::get('logout','LoginController@logout');
@@ -34,5 +35,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['hasRole','i
     Route::get('user/auth/{id}','UserController@auth');
     Route::post('role/doauth','RoleController@doAuth');
     Route::post('user/doauth','UserController@doAuth');
+
+    //分类路由
+    //修改排序
+    Route::post('cate/changeorder','CateController@changeOrder');
+    Route::resource('cate','CateController');
 });
 
