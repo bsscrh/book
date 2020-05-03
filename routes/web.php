@@ -40,5 +40,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['isLogin']],
     //修改排序
     Route::post('cate/changeorder','CateController@changeOrder');
     Route::resource('cate','CateController');
+    Route::resource('article','ArticleController');
+    Route::post('article/upload','ArticleController@upload');
 });
 
