@@ -91,23 +91,6 @@
                 <label for="L_art_tag" class="layui-form-label">
                     <span class="x-red">*</span>内容
                 </label>
-                {{--<div class="layui-input-block">--}}
-                    {{--<div class="layui-tab">--}}
-                        {{--<ul class="layui-tab-title">--}}
-                            {{--<li class="layui-this">输入markdown语法内容</li>--}}
-                            {{--<li id="previewBtn">预览Html语法的内容</li>--}}
-
-                        {{--</ul>--}}
-                        {{--<div class="layui-tab-content">--}}
-                            {{--<div class="layui-tab-item layui-show">--}}
-                                {{--<textarea id="z-textarea" name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>--}}
-                            {{--</div>--}}
-                            {{--<div class="layui-tab-item">--}}
-                                {{--<textarea id="z-textarea-preview" name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>--}}
-                            {{--</div>--}}
-
-                        {{--</div>--}}
-                    {{--</div>--}}
                 <div class="layui-input-block">
                     <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js"></script>
                     <script type="text/javascript" charset="utf-8" src="/ueditor/ueditor.all.min.js"> </script>
@@ -125,7 +108,6 @@
                 </div>
                 </div>
 
-            </div>
           <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
               </label>
@@ -134,6 +116,7 @@
               </button>
           </div>
       </form>
+
     </div>
 </body>
 <script>
@@ -211,8 +194,8 @@
           form.on('submit(add)', function(data){
 
           });
-          
-          
+
+
         });
     </script>
     <script>var _hmt = _hmt || []; (function() {
